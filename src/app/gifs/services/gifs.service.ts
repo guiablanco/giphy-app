@@ -9,7 +9,7 @@ export class GifsService {
 
   private _tagsHistory: string[] = [];
   private API_KEY:      string = 'hPIS12zdRkmrA359sZSBOKSGB5hPzHB1';
-  private serviceUrl:   string = 'http://api.giphy.com/v1/gifs';
+  private serviceUrl:   string = 'https://api.giphy.com/v1/gifs';
   private quantityGifs: number = 10;
 
 
@@ -58,7 +58,7 @@ export class GifsService {
       .set('limit', 10)
 
 
-    this.http.get<SearchResponse>(`${this.serviceUrl}/search?`, {params})
+    this.http.get<SearchResponse>(`${this.serviceUrl}/search`, {params})
       .subscribe( resp => {
         this.gifList = resp.data;
         console.log({gifs: this.gifList});
