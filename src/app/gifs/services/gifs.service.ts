@@ -17,7 +17,7 @@ export class GifsService {
 
     this.loadLocalStorage();
     console.log('Gifs service ready');
-    if(this._tagsHistory !== null){
+    if(this._tagsHistory == null){
       this.searchTag(this._tagsHistory[0]);
     }
   }
