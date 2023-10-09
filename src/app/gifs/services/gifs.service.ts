@@ -62,6 +62,9 @@ export class GifsService {
       .subscribe( resp => {
         this.gifList = resp.data;
         console.log({gifs: this.gifList});
+        if( this.gifList.length === 0 ){
+          alert('No hay gifs para esa palabra, lo sentimos');
+        }
 
 
       })
