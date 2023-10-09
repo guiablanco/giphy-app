@@ -30,8 +30,8 @@ export class GifsService {
       this._tagsHistory = this._tagsHistory.filter((oldTag) => oldTag !== tag);
     }
 
-    this._tagsHistory = this._tagsHistory.splice(0,9);
     this._tagsHistory.unshift(tag);
+    this._tagsHistory = this._tagsHistory.splice(0,9);
     this.saveLocalStorage();
   }
 
@@ -50,7 +50,7 @@ export class GifsService {
   searchTag(tag: string): void {
     if(tag.length === 0) return;
     this.organizeHistory(tag)
-    console.log(this._tagsHistory);
+
 
     const params = new HttpParams()
       .set('api_key', this.API_KEY)
@@ -58,7 +58,7 @@ export class GifsService {
       .set('limit', this.quantityGifs)
 
 
-    this.http.get<SearchResponse>(`${this.serviceUrl}/search?`, {params})
+    this.http.get<SearchResponse>(`${this.serviceUrl}/search`, {params})
       .subscribe( resp => {
         this.gifList = resp.data;
         console.log({gifs: this.gifList});
